@@ -69,6 +69,9 @@ if sshd -t -q; then
     systemctl restart sshd
 fi
 
+# Add passwordless sudo privileges to the user
+echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> "/etc/sudoers"
+
 # Add exception for SSH and then enable UFW firewall
 ufw allow OpenSSH
 ufw --force enable
